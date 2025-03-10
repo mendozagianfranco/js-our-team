@@ -38,10 +38,17 @@ const teamMembers = [
 ];
 // Elementi
 const parentElement = document.querySelector('.grid');
+const formElement = document.getElementById('form-new-members');
+const nameElement = document.getElementById('name-member');
+const emailElement = document.getElementById('email-member');
+const roleElement = document.getElementById('role-member');
+const imgElement = document.getElementById('img-member');
 
-// Aggiungere Elementi nella pagina
+
+// Aggiungere Elementi nella pagina prendendolo dai dai forniti
 renderHTML(parentElement, teamMembers);
 
+formElement.addEventListener('submit', addMembers);
 
 function renderHTML(parent, elements) {
   let item = '';
@@ -64,3 +71,24 @@ function makeStructureCardHTML(member) {
               </div>
             </div>`;
 }
+
+function addMembers(e) {
+  e.preventDefault();
+  const name = nameElement.value;
+  const email = emailElement.value;
+  const role = roleElement.value;
+  const img = imgElement.value;
+
+  const newMember = {
+    name,
+    email,
+    role,
+    img,
+  };
+
+  teamMembers.push(newMember);
+  formElement.reset();
+
+  renderHTML(parentElement, teamMembers);
+}
+
