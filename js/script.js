@@ -36,3 +36,41 @@ const teamMembers = [
     img: "img/female3.png"
   }
 ];
+
+// CARD
+/* <div class="card">
+<img src="img/male1.png" class="card-img" alt="Male 1" />
+<div class="card-info">
+    <h2 class="card-name">Marco</h2>
+    <p class="card-role">Designer</p>
+    <a href="#" class="card-email">Marco@email</a>
+</div>
+</div> */
+
+const parentElement = document.querySelector('.grid');
+
+
+renderHTML(parentElement, teamMembers);
+
+
+function renderHTML(parent, elements) {
+  let item = '';
+
+  for (let i = 0; i < elements.length; i++) {
+    let currentMember = elements[i];
+    item += makeStructureCardHTML(currentMember);
+  }
+  parent.innerHTML = item;
+}
+
+
+function makeStructureCardHTML(member) {
+  return ` <div class="card">
+              <img src="${member.img}" class="card-img" alt="${member.name}" />
+              <div class="card-info">
+                <h2 class="card-name">${member.name}</h2>
+                <p class="card-role">${member.role}</p>
+                <a href="#" class="card-email">${member.email}</a>
+              </div>
+            </div>`;
+}
